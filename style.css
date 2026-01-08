@@ -1,0 +1,409 @@
+/* Reset do CSS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. variaveis */
+:root {
+    --bg-dark: #0f0f12;
+    --bg-card: #16161a;
+    --text-main: #f0f0f0;
+    --text-fade: #9ca3af;
+    --accent-glow: rgba(139, 92, 246, 0.15);
+    --accent-solid: rgba(139, 92, 246, 1);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --gap-default: 1.5rem;
+}
+
+/* 3. estilos base */
+body {
+    background-color: var(--bg-dark);
+
+    /* padrao de grid sutil no fundo */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    
+    font-family: "Inter", sans-serif;
+    color: var(--text-fade);
+    min-height: 100vh;
+    
+    /* previne rolagem horizontal em celular */
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 4. layout e containers */
+
+/* blob roxo de fundo */
+.glow-blob {
+    position: fixed;
+    width: 60vw;
+    height: 60vw;
+    max-width: 500px;
+    max-height: 500px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Animacao de skeleton enquanto esperamos a API */
+
+/* wrapper do skeleton (limita largura da página) */
+.skeleton-card-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* container do skeleton (grid próprio que espelha o layout do card real) */
+.skeleton-card-container {
+    display: grid;
+    grid-template-columns: 1fr; /* mobile first */
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+}
+
+/* card skeleton (tamanho controlado, independe do card real) */
+.skeleton-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 1rem;
+    padding: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+
+    /*sem max height para o card não ser esmagado ou esticado demais*/
+    height: 100%; 
+    min-height: 450px; /* Altura mínima de segurança */
+    /* ========================================================================== */
+}
+
+/* header do skeleton */
+.skeleton-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+/* linhas animadas (base) */
+.skeleton-line {
+    background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.06) 25%,
+        rgba(255,255,255,0.12) 37%,
+        rgba(255,255,255,0.06) 63%
+    );
+    background-size: 400% 100%;
+    animation: skeleton-loading 1.4s ease infinite;
+    border-radius: 6px;
+}
+
+/* tamanhos específicos */
+
+/* ícone da pasta */
+.skeleton-icon {
+    width: 28px;
+    height: 28px;
+}
+
+/* botão github */
+.skeleton-button {
+    width: 72px;
+    height: 24px;
+}
+
+/* título */
+.skeleton-title {
+    width: 60%;
+    height: 22px;
+    margin-bottom: 0.5rem;
+}
+
+/* subtítulo */
+.skeleton-subtitle {
+    width: 80%;
+    height: 14px;
+    margin-bottom: 1rem;
+}
+
+/* descrição (MESMO TAMANHO DO CARD REAL) */
+.skeleton-description {
+    height: 160px;
+    margin-bottom: 1rem;
+    
+    /* ========================================================================== */
+    /* >>> INICIO DA ALTERACAO MEDINA: FLEX GROW <<< */
+    /* Motivo: Isso força a descrição a ocupar o espaço vazio verticalmente,
+        empurrando o footer para o final do card, igual ao card real.
+    */
+    flex-grow: 1;
+    /* ========================================================================== */
+}
+
+/* meta (data) */
+.skeleton-meta {
+    width: 40%;
+    height: 12px;
+    margin-bottom: 1rem;
+}
+
+/* footer */
+.skeleton-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-glass);
+}
+
+/* badge */
+.skeleton-badge {
+    width: 90px;
+    height: 20px;
+}
+
+/* animação */
+@keyframes skeleton-loading {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+
+
+
+/* classe para controle de visibilidade */
+
+.dom-visible {
+    display: block;
+}
+
+.dom-no-visible {
+    display: none;
+}
+
+
+/* cards de projetos reais pos fetch*/
+
+.project-card-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-card-container {
+    display: grid;
+    align-items: start;
+
+    /* mobile: 1 coluna */
+    grid-template-columns: 1fr;
+
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+}
+
+
+/* 5. componentes */
+
+/* estrutura do card */
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+    /* ========================================================================== */
+    /* >>> INICIO DA ALTERACAO MEDINA: ALTURA IGUALADA AO SKELETON <<< */
+    height: 100%; 
+    min-height: 450px;
+    /* ========================================================================== */
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+/* cabecalho do card */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-glass);
+}
+
+.folder-icon {
+    color: var(--accent-solid);
+    font-size: 1.75rem; /* ajustado para ~28px para equilibrar com o github */
+    line-height: 1;
+}
+
+/* botao do github estilizado */
+.github-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    
+    padding: 0.4rem 0.8rem;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.github-button:hover {
+    background-color: var(--accent-glow);
+    border-color: var(--accent-solid);
+    color: #a78bfa;
+    -webkit-box-shadow: 0 0px 20px rgba(143, 15, 218, 0.2);
+    box-shadow: 0 0px 20px rgba(143, 15, 218, 0.2);
+}
+
+.github-button svg {
+    fill: currentColor;
+    /* garantindo tamanho consistente pelo css tambem */
+    width: 20px;
+    height: 20px;
+}
+
+/* corpo do card */
+.card-title {
+    color: var(--text-main);
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.card-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-fade);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* container da descricao */
+.card-description-box {
+    margin-bottom: 1rem;
+    flex-grow: 1; /* ocupa o espaco disponivel */
+    min-height: 0; /* fix crucial para flexbox scrolling */
+    position: relative;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #d1d5db;
+    
+    /* solucao para ler tudo mantendo altura igual */
+    height: 160px; /* altura fixa para a area de texto */
+    overflow-y: auto; /* scroll se passar da altura */
+    padding-right: 0.5rem; /* espaco para a scrollbar nao colar no texto */
+}
+
+/* informacoes meta (data) */
+.card-meta {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+/* rodape do card */
+.card-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-glass);
+    display: flex;
+    align-items: center;
+}
+
+/* badge de categoria */
+.card-type {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    background-color: rgba(139, 92, 246, 0.1);
+    color: #a78bfa;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    font-weight: 600;
+}
+
+/* 6. utilitarios e scrollbar */
+.hidden {
+    display: none !important;
+}
+
+/* estilizando a scrollbar da descricao para ficar bonita (webkit) */
+.card-description::-webkit-scrollbar {
+    width: 4px;
+}
+
+.card-description::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.card-description::-webkit-scrollbar-thumb {
+    background-color: rgba(139, 92, 246, 0.3);
+    border-radius: 4px;
+}
+
+.card-description::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(139, 92, 246, 0.6);
+}
+
+
+
+/* Media queries */
+
+/* Tablets */
+
+@media (min-width: 600px) {
+    .project-card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skeleton-card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
+/* Desktops */
+
+@media (min-width: 1024px) {
+    .project-card-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .skeleton-card-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
