@@ -1,11 +1,4 @@
-/* organizacao do js
-    1. constantes e configuracoes
-    2. funcoes de dados (fetch)
-    3. funcoes de dom (construcao)
-    4. inicializacao (genesis)
-*/
-
-// 1. constantes e configuracoes
+// constantes dos scripts + headers da API
 
 const API_URL = 'https://medina-portfolio-api-2e362865a1d8.herokuapp.com/projects';
 
@@ -20,14 +13,14 @@ const REQUEST_OPTIONS = {
     redirect: 'follow'
 };
 
-// svg do github atualizado para viewBox e dimensoes mais equilibradas
+// github SVG
 const GITHUB_SVG = `
     <svg viewBox="0 0 24 24" width="20" height="20">
         <path d="M12 0.5C5.73 0.5 0.5 5.73 0.5 12c0 5.1 3.29 9.42 7.86 10.96.57.1.78-.25.78-.55v-2.02c-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.71 1.25 3.37.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.69.41.35.77 1.04.77 2.1v3.11c0 .3.21.65.79.54A11.52 11.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"/>
     </svg>
 `;
 
-// 2. funcoes de dados
+// fetch da API
 
 async function fetchApi() {
     try {
@@ -48,7 +41,7 @@ async function fetchApi() {
 
 
 
-// 3. funcoes de dom
+// funcoes para o DOM
 
 function formatCategory(rawCategory) {
     if(rawCategory === 'FRONT_END') return 'Front-end';
