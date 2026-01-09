@@ -256,3 +256,46 @@ function openMenu() {
     header.classList.toggle('menu-open')
 
 }
+
+
+
+// funcao de digitacao
+
+const targetElement = document.querySelector('#auto-type');
+const words = ['APIs', 'interfaces', 'aplicações', 'experiências']; // depois você pode virar array de várias
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typingEffect() {
+    const currentWord = words[wordIndex];
+
+    // escreve ou apaga            
+    if (!isDeleting) {
+        targetElement.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+    } else {
+        targetElement.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+    }
+
+    // controle de delay
+    let delay = isDeleting ? 50 : 100;
+
+    // pausa após digitar
+        if (!isDeleting && charIndex === currentWord.length) {
+        delay = 1200;
+        isDeleting = true;
+    }
+
+    // pausa após apagar
+        else if (isDeleting && charIndex === 0) {
+        delay = 50;
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+    }
+
+    setTimeout(typingEffect, delay);
+}
+
+typingEffect();

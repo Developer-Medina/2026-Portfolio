@@ -1,5 +1,7 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 /* Reset do CSS */
 
@@ -77,6 +79,8 @@ header a {
     margin: auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    vertical-align: center;
 
 }
 
@@ -95,6 +99,7 @@ header a {
     pointer-events: none;
     transform-origin: top center;
 
+
     /*animando para quando aparecer*/
     transition:
         max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
@@ -103,7 +108,7 @@ header a {
 }
 
 .nav-content-padding { /*estamos dando o padding num wrapper pra não deixar a animacao ruim*/
-    padding: 1rem;
+    padding: 0.8rem;
     width: calc(100% - 2vw);
     margin: auto;
 }
@@ -134,27 +139,32 @@ header a {
 
 
 
+
 /* botaozinho com meu nome e leva ao meu github*/
 
 .nav-logo {
-    font-family: "Raleway", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--text-main);
+    font-size: 2rem;
+    color: var(--text-fade);
     cursor: pointer;
+    transform: translateY(-2.5px);
+
+    transition:
+        color 0.25s ease,
+        text-shadow 0.25s ease,
+        filter 0.25s ease;
 }
 
+/* novo glow */
 .nav-logo:hover {
-    animation: glow 2s infinite alternate;
-}
+    color: #ffffff;
 
-@keyframes glow {
-    0% {
-        text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
-    }
-    100% {
-        text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 40px #00d4ff, 0 0 80px #00d4ff, 0 0 160px #00d4ff;
-    }
+    text-shadow:
+        0 0 8px rgba(139, 92, 246, 0.35),
+        0 0 16px rgba(139, 92, 246, 0.15);
+
+    filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.4));
 }
 
 .menu-item {
@@ -168,9 +178,54 @@ header a {
 
 
 .menu-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /*tamanho e altura do container*/
+    height: 1.3rem;
+    width: 1.6rem;
+
     cursor: pointer;
-    color: var(--accent-solid);
+    background-color: transparent;
+    border: none;
+
+
 }
+
+.menu-button .line {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-main);
+    border-radius: 1rem;
+    transform-origin: center center; /* essa é a âncora da transofmracao*/
+
+        transition: 
+        transform 0.3s ease,
+        opacity 0.3s ease;
+
+}
+
+.header.menu-open .line-top {
+
+    transform: translateY(8.9px) rotate(45deg) ; /*translate é altura do botão - altura da linha / 2, logo, 20,8 - 3 / 2 = 8,9 */
+}
+
+.header.menu-open .line-mid {
+    opacity: 0;
+}
+
+.header.menu-open .line-bot {
+
+    transform: translateY(-8.9px) rotate(-45deg);  /*ah, tem que ser nessa ordem também!!!!*/
+}
+
+
+
+/* animando pra ficar um X quando o menu tiver aberto */
+
+
 
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
@@ -186,7 +241,7 @@ header a {
   white-space: nowrap;
   direction: ltr;
 
-  /* Suas variações personalizadas */
+  /* variações que escolhi, filled */
   font-variation-settings:
   'FILL' 1,
   'wght' 400,
@@ -197,11 +252,10 @@ header a {
 
 
 
-/* 4. layout e containers */
 
 /* blob roxo de fundo */
 .glow-blob {
-    position: fixed;
+    position: absolute;
     width: 60vw;
     height: 60vw;
     max-width: 500px;
@@ -210,8 +264,193 @@ header a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: -1;
+    z-index: 0;
     pointer-events: none;
+}
+
+/* HERO SECTION */
+
+.header,
+.hero-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-wrapper {
+    /* Usar dvh ajuda no mobile com barras de navegador */
+    min-height: 100dvh; 
+    width: 100%; /* previnindo scroll lateral */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    overflow: hidden;
+    
+    /* Ajuste Medina: Mais espaço embaixo para os botões não colarem */
+    padding-top: 80px; 
+    padding-bottom: 3rem;
+}
+
+.hero-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 2rem; /* Ajuste Medina: Reduzi levemente o gap para caber melhor no mobile */
+    padding-top: -2rem;
+    z-index: 2;
+}
+
+.main-tag {
+    /* alinhar essa tag ao inicio do container*/
+    
+    font-family: 'Fira Code', monospace; 
+    background-color: rgba(139, 92, 246, 0.1);
+    padding: 0.6rem 1.2rem; 
+    border-radius: 0.5rem;
+    width: auto; 
+
+    text-align: center;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    color: #8b5cf6;
+    letter-spacing: 0.5px;
+    font-size: 0.8rem; /* Ajuste para mobile */
+    margin-top: -4rem;
+}
+
+.hero-title {
+    color: var(--text-main);
+    /* Ajuste Medina: Tamanho seguro para mobile (evita overflow) */
+    font-size: 2rem; 
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    word-wrap: break-word; /* Garante que não quebre o layout */
+}
+
+.typing-wrapper {
+    display: inline-block; /* Comporta-se melhor com quebra de linha */
+    color: var(--text-main);
+    max-width: 100%;
+}
+
+.hero-description {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem; 
+    opacity: 0.85;
+    line-height: 1.5;
+    text-align: center;
+    display: block;
+}
+
+#auto-type {
+    color: var(--accent-solid);
+    font-weight: 700;
+    font-family: 'Fira Code', monospace; 
+}
+
+#auto-type::after {
+    content: '|';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+
+.hero-btns {
+    margin-top: 2rem;
+    /* remove a margem fixa gigante de baixo */
+    margin-bottom: 0; 
+    display: flex;
+    flex-flow: column wrap; /* no celular, um em cima do outro é mais seguro */
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; 
+    width: 100%; /* centralizando tudo */
+}
+
+.btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem; 
+    font-weight: 600; 
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    border-radius: 0.5rem;
+    text-decoration: none; 
+    
+    /* Ajuste Medina: No mobile, botões full width ou quase isso ficam melhores */
+    width: 100%; 
+    max-width: 300px;
+    height: auto;
+    padding: 1rem 0; /* Mais fácil de clicar no touch */
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: #8b5cf6;
+    color: var(--text-main);
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+}
+
+.btn-outline {
+    margin-top: 0; 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    color: var(--text-main);
+    transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+    background-color: rgba(139, 92, 246, 0.1);
+    border-color: #8b5cf6;
+    color: #8b5cf6;
+}
+
+
+.scroll-arrow {
+    margin-top: 4rem; /* Espaço para separar dos botões */
+    color: var(--text-fade); /* Começa sutil */
+    font-size: 2rem;
+
+    /* A mágica da animação */
+    animation: float-arrow 2s infinite ease-in-out;
+
+    /* Garantir que não seja selecionável como texto */
+    user-select: none;
+    cursor: default;
+}
+
+/* Animação de flutuação */
+@keyframes float-arrow {
+    0% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(10px); /* Move 10px para baixo */
+        opacity: 1; /* Fica totalmente visível */
+        color: var(--accent-solid); /* Brilha roxo no pico */
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
 }
 
 /* Animacao de skeleton enquanto esperamos a API */
@@ -243,8 +482,7 @@ header a {
 
     /*sem max height para o card não ser esmagado ou esticado demais*/
     height: 100%; 
-    min-height: 450px; /* Altura mínima de segurança */
-    /* ========================================================================== */
+    min-height: 450px; /* altura mínima pra seguranca do card segurança */
 }
 
 /* header do skeleton */
@@ -273,47 +511,41 @@ header a {
 
 /* tamanhos específicos */
 
-/* ícone da pasta */
+/* icone da pasta */
 .skeleton-icon {
     width: 28px;
     height: 28px;
 }
 
-/* botão github */
+/* botao github */
 .skeleton-button {
     width: 72px;
     height: 24px;
 }
 
-/* título */
+/* titulo do card */
 .skeleton-title {
     width: 60%;
     height: 22px;
     margin-bottom: 0.5rem;
 }
 
-/* subtítulo */
+/* subtitulo do card */
 .skeleton-subtitle {
     width: 80%;
     height: 14px;
     margin-bottom: 1rem;
 }
 
-/* descrição (MESMO TAMANHO DO CARD REAL) */
+/* descrição - tentei simular o mesmo tamanho do card real */
 .skeleton-description {
     height: 160px;
     margin-bottom: 1rem;
-    
-    /* ========================================================================== */
-    /* >>> INICIO DA ALTERACAO MEDINA: FLEX GROW <<< */
-    /* Motivo: Isso força a descrição a ocupar o espaço vazio verticalmente,
-        empurrando o footer para o final do card, igual ao card real.
-    */
-    flex-grow: 1;
-    /* ========================================================================== */
+    flex-grow: 1; /* ela precisa poder crescer*/
+
 }
 
-/* meta (data) */
+/* data */
 .skeleton-meta {
     width: 40%;
     height: 12px;
@@ -327,13 +559,13 @@ header a {
     border-top: 1px solid var(--border-glass);
 }
 
-/* badge */
+/* tag final */
 .skeleton-badge {
     width: 90px;
     height: 20px;
 }
 
-/* animação */
+/* animacao de loading do skeleton */
 @keyframes skeleton-loading {
     0% {
         background-position: 100% 0;
@@ -369,7 +601,7 @@ header a {
     display: grid;
     align-items: start;
 
-    /* mobile: 1 coluna */
+    /* mobile first == 1 coluna */
     grid-template-columns: 1fr;
 
     gap: 2rem;
@@ -377,8 +609,7 @@ header a {
 }
 
 
-/* 5. componentes */
-
+/* CARDS REAIS */
 /* estrutura do card */
 .project-card {
     display: flex;
@@ -389,11 +620,8 @@ header a {
     padding: 1.5rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     
-    /* ========================================================================== */
-    /* >>> INICIO DA ALTERACAO MEDINA: ALTURA IGUALADA AO SKELETON <<< */
     height: 100%; 
     min-height: 450px;
-    /* ========================================================================== */
 }
 
 .project-card:hover {
@@ -414,7 +642,7 @@ header a {
 
 .folder-icon {
     color: var(--accent-solid);
-    font-size: 1.75rem; /* ajustado para ~28px para equilibrar com o github */
+    font-size: 1.75rem; /* ajustado para ~28px para equilibrar com o github (parece menor) */
     line-height: 1;
 }
 
@@ -471,7 +699,7 @@ header a {
 .card-description-box {
     margin-bottom: 1rem;
     flex-grow: 1; /* ocupa o espaco disponivel */
-    min-height: 0; /* fix crucial para flexbox scrolling */
+    min-height: 0; 
     position: relative;
 }
 
@@ -482,8 +710,8 @@ header a {
     
     /* solucao para ler tudo mantendo altura igual */
     height: 160px; /* altura fixa para a area de texto */
-    overflow-y: auto; /* scroll se passar da altura */
-    padding-right: 0.5rem; /* espaco para a scrollbar nao colar no texto */
+    overflow-y: auto; /* scroll se passar da altura minima permitida */
+    padding-right: 0.3rem; /* espaco para a scrollbar nao colar no texto */
 }
 
 /* informacoes meta (data) */
@@ -628,6 +856,22 @@ header a {
         border-top: none;
         box-shadow: none; 
     }
+
+    .main-tag {
+        margin-top: -5rem;
+    }
+
+    .hero-btns {
+        margin-top: 3rem;
+
+        display: flex;
+        flex-flow: row nowrap; /* Mobile: um em cima do outro é mais seguro */
+        justify-content: center;
+        align-items: center;
+        gap: 1rem; 
+        width: 100%; /* Garante centralização */
+    }
+
 
     .project-card-container {
         grid-template-columns: repeat(3, 1fr);
