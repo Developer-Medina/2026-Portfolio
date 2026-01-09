@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Box Model Visual Demo</title>
+  <style>
+    :root {
+      --bg: #0f0f13;
+      --glass: rgba(255, 255, 255, 0.08);
+      --accent: #8b5cf6;
+      --text: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, sans-serif;
+      min-height: 200vh;
+      padding-top: 2rem;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 1rem;
+
+      width: calc(100% - 1rem);
+      max-width: 600px;
+      margin: 0 auto;
+
+      background: var(--glass);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+
+      outline: 2px solid red; /* limite real do header */
+      transition: all 0.3s ease;
+    }
+
+    /* NAV (conteúdo) */
+    nav {
+      display: flex;
+      justify-content: space-between;
+
+      outline: 2px solid cyan; /* limite do conteúdo */
+    }
+
+    /* CONTROLES */
+    .controls {
+      margin: 3rem auto;
+      max-width: 600px;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 0.6rem 1rem;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .info {
+      max-width: 600px;
+      margin: 2rem auto;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header">
+    <nav>
+      <span>Medina</span>
+      <span>Menu</span>
+    </nav>
+  </header>
+
+  <div class="controls">
+    <button onclick="toggleHeaderPadding()">Toggle padding no HEADER</button>
+    <button onclick="toggleHeaderMargin()">Toggle margin no HEADER</button>
+    <button onclick="resetAll()">Reset</button>
+  </div>
+
+  <div class="info">
+    <p><strong>🔴 Vermelho:</strong> limite real do HEADER</p>
+    <p><strong>🔵 Ciano:</strong> limite do conteúdo (NAV)</p>
+    <p>
+      Observe:<br>
+      – Padding empurra o conteúdo para dentro<br>
+      – Margin cria espaço fora do elemento<br>
+      – calc() reduz a largura total antes de tudo
+    </p>
+  </div>
+
+  <script>
+    const header = document.getElementById("header");
+
+    let paddingOn = false;
+    let marginOn = false;
+
+    function toggleHeaderPadding() {
+      paddingOn = !paddingOn;
+      header.style.padding = paddingOn ? "1rem" : "0";
+    }
+
+    function toggleHeaderMargin() {
+      marginOn = !marginOn;
+      header.style.marginTop = marginOn ? "3rem" : "0";
+    }
+
+    function resetAll() {
+      paddingOn = false;
+      marginOn = false;
+      header.style.padding = "0";
+      header.style.marginTop = "0";
+    }
+  </script>
+
+</body>
+</html>

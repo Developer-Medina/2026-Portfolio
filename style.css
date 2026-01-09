@@ -1,3 +1,6 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 /* Reset do CSS */
 
 * {
@@ -8,6 +11,8 @@
 
 /* 2. variaveis */
 :root {
+    --bg-glass1: rgba(22, 22, 26, 0.5);
+    --border-glass: rgba(255, 255, 255, 0.05);
     --bg-dark: #0f0f12;
     --bg-card: #16161a;
     --text-main: #f0f0f0;
@@ -36,6 +41,161 @@ body {
     overflow-x: hidden;
     position: relative;
 }
+
+/* HEADER E NAV */ 
+
+
+.header {
+    width: calc(100% - 0.5rem * 2); /* poderia ser 1rem sem 0.5rem * 2, é a mesma coisa!*/
+    max-width: 1200px;
+    margin: 0 auto;
+
+    background-color: var(--bg-glass1);
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.562);
+
+    border-radius: 1rem;
+    position: sticky;
+    top: 1rem; /* Precisa ter pro sticky funcionar, tal qual precisa ser o elemento do topo, o container, o pai*/
+    z-index: 1000;
+}
+
+header a {
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.nav-bar {
+    padding: 0.8rem;
+    width: calc(100% - 2vw); /*tá show!*/
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.nav-panel { /* ele existe!!! mas não faz nada porque configuramos assim...*/
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 0rem 0rem 1rem 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    /* aqui sim nos dizemos: ele existe mas... nao mostra nada*/
+    max-height: 0px;
+    padding: 0rem;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: top center;
+
+    /*animando para quando aparecer*/
+    transition:
+        max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s; /*height é meio bugado pra animar, então vamos usar um transform so pra deixar melhor*/
+
+}
+
+.nav-content-padding { /*estamos dando o padding num wrapper pra não deixar a animacao ruim*/
+    padding: 1rem;
+    width: calc(100% - 2vw);
+    margin: auto;
+}
+
+.nav-list {
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+}
+
+.nav-list > li a {
+    color: var(--text-fade);
+}
+
+
+/*se header tiver a classe menu-open, então .nav-panel vai assumir essas propriedades...*/
+.header.menu-open .nav-panel { /*Agora sim mudamos as propriedades pra ele existir!*/
+    /* bordinha pequena e fofa*/
+    border-top: 1px solid var(--border-glass);
+    max-height: 250px;
+
+    opacity: 1;
+    pointer-events: auto; /*o mouse funciona normal também, incluindo links*/
+}
+
+
+
+
+
+/* botaozinho com meu nome e leva ao meu github*/
+
+.nav-logo {
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+.nav-logo:hover {
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
+    }
+    100% {
+        text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 40px #00d4ff, 0 0 80px #00d4ff, 0 0 160px #00d4ff;
+    }
+}
+
+.menu-item {
+    list-style-type: none;
+}
+
+
+.menu-item::before {
+    content: '🔗 ';
+}
+
+
+.menu-button {
+    cursor: pointer;
+    color: var(--accent-solid);
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Tamanho padrão */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Suas variações personalizadas */
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+}
+
+
+
 
 /* 4. layout e containers */
 
@@ -213,7 +373,7 @@ body {
     grid-template-columns: 1fr;
 
     gap: 2rem;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem; /**/
 }
 
 
@@ -355,9 +515,9 @@ body {
     font-weight: 600;
 }
 
-/* 6. utilitarios e scrollbar */
+/* classe utilitaria do JS*/
 .hidden {
-    display: none !important;
+    display: none;
 }
 
 /* estilizando a scrollbar da descricao para ficar bonita (webkit) */
@@ -398,7 +558,77 @@ body {
 
 /* Desktops */
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
+
+    /* header */
+    /* a ordem é: header é o maior container, depois tem nav-menu, dentro tem nav-bar e nav-panel, nav-panel tem a lista (nav-list), e dentro tem menu-item  */
+
+    .nav-menu {
+        flex-direction: row;
+        align-items: center;
+        padding: 0 1.5rem; 
+    }
+
+    .nav-bar {
+        width: auto;
+        margin: 0;
+
+    }
+
+    .nav-panel {
+        border: none;
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        overflow: visible;  /*precisa!*/
+        max-height: none;
+        opacity: 1;
+        pointer-events: auto;
+        backdrop-filter: none;  /*precisamos remover o blur, senao, temos uma especie de bug com o background color dos filhos (<a>)*/
+        -webkit-backdrop-filter: none;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .nav-content-padding {
+        padding: 0rem;
+        margin: 0rem;
+    }
+
+    .nav-list {
+        width: auto;
+        flex-flow: row nowrap;
+        gap: 2rem;
+        margin-right: 0.6rem;
+    }
+
+    .nav-list a {
+        white-space: nowrap;
+    }
+
+    .nav-list a:hover {
+        color: var(--accent-solid);
+    }
+
+    .menu-button {
+        display: none !important;
+    }
+
+    .menu-item {
+        font-weight: 700;
+    }
+    .menu-item::before {
+        content: '';
+    }
+
+    .header.menu-open .nav-panel {
+        /*na viewport para celular, criamos uma borda*/
+        /*se o menu é expandido e a viewport aumenta, a borda continua no topo*/
+        /* aqui nos asseguramos que, mesmo que header possua menu-open, o nav-panel não vai ter borda*/
+        border-top: none;
+        box-shadow: none; 
+    }
+
     .project-card-container {
         grid-template-columns: repeat(3, 1fr);
     }

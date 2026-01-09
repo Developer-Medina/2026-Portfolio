@@ -243,3 +243,16 @@ async function genesis() {
 
 
 genesis();
+
+
+// funcao do menu 
+
+function openMenu() {
+    // selecionando o header todo, isso pois para que seja possível animar esse menu
+    // o menu sempre existe, o que muda é o estado dele
+    // essa classe só serve pra repassarmos o estado para o css
+    
+    const header = document.querySelector('.header');
+    header.classList.toggle('menu-open')
+
+}
