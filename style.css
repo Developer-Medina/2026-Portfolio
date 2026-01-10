@@ -1,6 +1,5 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 
 /* Reset do CSS */
@@ -11,7 +10,7 @@
     box-sizing: border-box;
 }
 
-/* 2. variaveis */
+/* AREA DE ROOT: VARIÁVEIS */
 :root {
     --bg-glass1: rgba(22, 22, 26, 0.5);
     --border-glass: rgba(255, 255, 255, 0.05);
@@ -25,7 +24,7 @@
     --gap-default: 1.5rem;
 }
 
-/* 3. estilos base */
+/* BODY */
 body {
     background-color: var(--bg-dark);
 
@@ -44,8 +43,9 @@ body {
     position: relative;
 }
 
-/* HEADER E NAV */ 
 
+
+/* HEADER E NAV */ 
 
 .header {
     width: calc(100% - 0.5rem * 2); /* poderia ser 1rem sem 0.5rem * 2, é a mesma coisa!*/
@@ -75,7 +75,7 @@ header a {
 
 .nav-bar {
     padding: 0.8rem;
-    width: calc(100% - 2vw); /*tá show!*/
+    width: calc(100% - 2vw); /*tá show assim!!!!!*/
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -91,6 +91,7 @@ header a {
     border-radius: 0rem 0rem 1rem 1rem;
     display: flex;
     flex-flow: row nowrap;
+
     /* aqui sim nos dizemos: ele existe mas... nao mostra nada*/
     max-height: 0px;
     padding: 0rem;
@@ -103,7 +104,9 @@ header a {
     /*animando para quando aparecer*/
     transition:
         max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s; /*height é meio bugado pra animar, então vamos usar um transform so pra deixar melhor*/
+        opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s; 
+        /*height é meio bugado pra animar, então vamos usar um transform so pra deixar melhor*/
+        /*removi o height*/
 
 }
 
@@ -143,6 +146,7 @@ header a {
 /* botaozinho com meu nome e leva ao meu github*/
 
 .nav-logo {
+    /*  roboto aqui pois é mandatório pro simbolo de infinito ser bonitinho */
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 2rem;
@@ -288,8 +292,8 @@ header a {
     overflow: hidden;
     
     /* Ajuste Medina: Mais espaço embaixo para os botões não colarem */
-    padding-top: 80px; 
-    padding-bottom: 3rem;
+    padding-top: 60px; 
+    padding-bottom: 2rem;
 }
 
 .hero-container {
@@ -299,8 +303,7 @@ header a {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
-    gap: 2rem; /* Ajuste Medina: Reduzi levemente o gap para caber melhor no mobile */
-    padding-top: -2rem;
+    gap: 1.8rem; 
     z-index: 2;
 }
 
@@ -308,42 +311,57 @@ header a {
     /* alinhar essa tag ao inicio do container*/
     
     font-family: 'Fira Code', monospace; 
-    background-color: rgba(139, 92, 246, 0.1);
-    padding: 0.6rem 1.2rem; 
-    border-radius: 0.5rem;
+    background-color: rgba(139, 92, 246, 0.08); 
+    padding: 0.5rem 1rem; 
+    border-radius: 99px; 
     width: auto; 
 
     text-align: center;
-    border: 1px solid rgba(139, 92, 246, 0.3);
-    color: #8b5cf6;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    color: #a78bfa; 
     letter-spacing: 0.5px;
-    font-size: 0.8rem; /* Ajuste para mobile */
-    margin-top: -4rem;
+    
+    /* tamanho de fonte responsivo */
+    font-size: 0.75rem; 
+    
+    /* Removi a margin-top -4rem. Isso quebrava o layout no iPhone SE. Agora ele flutua pelo gap do container */
+    margin-top: 0; 
+    
+    text-transform: uppercase; /* estilo de badge */
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.05); /* glow sutil */
 }
 
 .hero-title {
-    color: var(--text-main);
-    /* Ajuste Medina: Tamanho seguro para mobile (evita overflow) */
-    font-size: 2rem; 
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-    line-height: 1.2;
+    color: var(--text-main);    
+    font-family: 'Montserrat', sans-serif;    
+    font-size: clamp(1.8rem, 5vw, 3.5rem); /*propriedade: clamp(minimo, ideal, max), o navegador adapta*/
+    margin-bottom: 0.2rem;
+    font-weight: 800; 
+    line-height: 1.1;
     text-align: center;
     word-wrap: break-word; /* Garante que não quebre o layout */
+    letter-spacing: -0.02em; /* parece ser mais moderno... */
 }
 
 .typing-wrapper {
-    display: inline-block; /* Comporta-se melhor com quebra de linha */
+    display: inline-block; /* melhor com quebra de linha (se nao vai quebrar e fica feio) */
     color: var(--text-main);
     max-width: 100%;
 }
 
 .hero-description {
-    max-width: 600px;
+    /* aumentei levemente a largura maxima para o texto fluir melhor em tablets tb */
+    max-width: 650px;
     margin: 0 auto;
+    
+    font-family: 'Inter', sans-serif;
     font-size: 1rem; 
-    opacity: 0.85;
-    line-height: 1.5;
+    
+    /* cor um pouco mais clara pra leitura// acessibilidade */
+    color: #d1d5db;
+    opacity: 1; /* removi opacidade para melhorar legibilidade em telas com brilho baixo */
+    
+    line-height: 1.6; /* entrelinha maior para elegância */
     text-align: center;
     display: block;
 }
@@ -365,7 +383,9 @@ header a {
 }
 
 .hero-btns {
-    margin-top: 2rem;
+    /* removi margin-top pois o gap do container pai ja cuida disso */
+    margin-top: 0.5rem; 
+    
     /* remove a margem fixa gigante de baixo */
     margin-bottom: 0; 
     display: flex;
@@ -378,7 +398,7 @@ header a {
 
 .btn {
     font-family: 'Inter', sans-serif;
-    font-size: 1rem; 
+    font-size: 0.95rem; /* ajuste fino */
     font-weight: 600; 
     background-color: transparent;
     box-shadow: none;
@@ -390,7 +410,7 @@ header a {
     width: 100%; 
     max-width: 300px;
     height: auto;
-    padding: 1rem 0; /* Mais fácil de clicar no touch */
+    padding: 0.9rem 0; /* Mais fácil de clicar no touch */
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -422,9 +442,16 @@ header a {
     color: #8b5cf6;
 }
 
+/* container novo para a seta */
+.scroll-arrow-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
 
 .scroll-arrow {
-    margin-top: 4rem; /* Espaço para separar dos botões */
+    /* removi margem fixa para usar a do container */
+    margin-top: 0;
     color: var(--text-fade); /* Começa sutil */
     font-size: 2rem;
 
@@ -858,11 +885,13 @@ header a {
     }
 
     .main-tag {
-        margin-top: -5rem;
+        /* margin-top zero aqui tb, controlado pelo layout flex pai */
+        margin-top: 0;
     }
 
     .hero-btns {
-        margin-top: 3rem;
+        /* aumentei a margem superior em desktop para separar melhor do texto */
+        margin-top: 2rem;
 
         display: flex;
         flex-flow: row nowrap; /* Mobile: um em cima do outro é mais seguro */
