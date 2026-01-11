@@ -1,16 +1,13 @@
-@charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
-/* Reset do CSS */
-
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* AREA DE ROOT: VARIÁVEIS */
+/* ROOT */
 :root {
     --bg-glass1: rgba(22, 22, 26, 0.5);
     --border-glass: rgba(255, 255, 255, 0.05);
@@ -41,11 +38,10 @@ body {
     /* previne rolagem horizontal em celular */
     overflow-x: hidden;
     position: relative;
+    scroll-behavior: smooth;
 }
 
-
-
-/* HEADER E NAV */ 
+/* --- HEADER E NAV --- */ 
 
 .header {
     width: calc(100% - 0.5rem * 2); /* poderia ser 1rem sem 0.5rem * 2, é a mesma coisa!*/
@@ -60,7 +56,7 @@ body {
 
     border-radius: 1rem;
     position: sticky;
-    top: 1rem; /* Precisa ter pro sticky funcionar, tal qual precisa ser o elemento do topo, o container, o pai*/
+    top: 1rem; /* precisa ter pro sticky funcionar, tal qual precisa ser o elemento do topo, o container, o pai*/
     z-index: 1000;
 }
 
@@ -106,18 +102,17 @@ header a {
         max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
         opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1) 0.1s; 
         /*height é meio bugado pra animar, então vamos usar um transform so pra deixar melhor*/
-        /*removi o height*/
+        /*removi o height ;p*/
 
 }
 
-.nav-content-padding { /*estamos dando o padding num wrapper pra não deixar a animacao ruim*/
+.nav-content-padding { /*estamos dando o padding num wrapper, ao inves do elemento, pra não deixar a animacao ruim*/
     padding: 0.8rem;
     width: calc(100% - 2vw);
     margin: auto;
 }
 
 .nav-list {
-
     display: flex;
     flex-flow: column nowrap;
     gap: 1rem;
@@ -126,7 +121,6 @@ header a {
 .nav-list > li a {
     color: var(--text-fade);
 }
-
 
 /*se header tiver a classe menu-open, então .nav-panel vai assumir essas propriedades...*/
 .header.menu-open .nav-panel { /*Agora sim mudamos as propriedades pra ele existir!*/
@@ -138,15 +132,9 @@ header a {
     pointer-events: auto; /*o mouse funciona normal também, incluindo links*/
 }
 
-
-
-
-
-
 /* botaozinho com meu nome e leva ao meu github*/
-
 .nav-logo {
-    /*  roboto aqui pois é mandatório pro simbolo de infinito ser bonitinho */
+    /* roboto aqui pois é mandatório pro simbolo de infinito ser bonitinho */
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 2rem;
@@ -175,11 +163,9 @@ header a {
     list-style-type: none;
 }
 
-
 .menu-item::before {
     content: '🔗 ';
 }
-
 
 .menu-button {
     display: flex;
@@ -193,8 +179,6 @@ header a {
     cursor: pointer;
     background-color: transparent;
     border: none;
-
-
 }
 
 .menu-button .line {
@@ -208,11 +192,9 @@ header a {
         transition: 
         transform 0.3s ease,
         opacity 0.3s ease;
-
 }
 
 .header.menu-open .line-top {
-
     transform: translateY(8.9px) rotate(45deg) ; /*translate é altura do botão - altura da linha / 2, logo, 20,8 - 3 / 2 = 8,9 */
 }
 
@@ -221,41 +203,31 @@ header a {
 }
 
 .header.menu-open .line-bot {
-
     transform: translateY(-8.9px) rotate(-45deg);  /*ah, tem que ser nessa ordem também!!!!*/
 }
 
-
-
-/* animando pra ficar um X quando o menu tiver aberto */
-
-
+/* --- icones do google font --- */
 
 .material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px; /* Tamanho padrão */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px; /* Tamanho padrão */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
 
-  /* variações que escolhi, filled */
-  font-variation-settings:
-  'FILL' 1,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24;
+    /* variações que escolhi - filled */
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
 }
-
-
-
-
 
 /* blob roxo de fundo */
 .glow-blob {
@@ -272,7 +244,7 @@ header a {
     pointer-events: none;
 }
 
-/* HERO SECTION */
+/* --- HERO SECTION --- */
 
 .header,
 .hero-wrapper {
@@ -281,8 +253,8 @@ header a {
 }
 
 .hero-wrapper {
-    /* Usar dvh ajuda no mobile com barras de navegador */
-    min-height: 100dvh; 
+    /* usar dvh ajuda no mobile com barras de navegador */
+    min-height: 95dvh; 
     width: 100%; /* previnindo scroll lateral */
     position: relative;
     display: flex;
@@ -291,7 +263,7 @@ header a {
     padding: 1.5rem;
     overflow: hidden;
     
-    /* Ajuste Medina: Mais espaço embaixo para os botões não colarem */
+    /* mais espaço embaixo para os botões não colarem */
     padding-top: 60px; 
     padding-bottom: 2rem;
 }
@@ -323,10 +295,7 @@ header a {
     
     /* tamanho de fonte responsivo */
     font-size: 0.75rem; 
-    
-    /* Removi a margin-top -4rem. Isso quebrava o layout no iPhone SE. Agora ele flutua pelo gap do container */
-    margin-top: 0; 
-    
+    margin-top: 0;     
     text-transform: uppercase; /* estilo de badge */
     box-shadow: 0 0 15px rgba(139, 92, 246, 0.05); /* glow sutil */
 }
@@ -334,12 +303,12 @@ header a {
 .hero-title {
     color: var(--text-main);    
     font-family: 'Montserrat', sans-serif;    
-    font-size: clamp(1.8rem, 5vw, 3.5rem); /*propriedade: clamp(minimo, ideal, max), o navegador adapta*/
+    font-size: clamp(1.8rem, 5vw, 3.5rem); /*propriedade: clamp(minimo, ideal, max), o navegador adapta. Melhor que calc()*/
     margin-bottom: 0.2rem;
     font-weight: 800; 
     line-height: 1.1;
     text-align: center;
-    word-wrap: break-word; /* Garante que não quebre o layout */
+    word-wrap: break-word; /* vi no stack overflow, garante que não quebre o layout (preciso entender melhor) */
     letter-spacing: -0.02em; /* parece ser mais moderno... */
 }
 
@@ -350,7 +319,7 @@ header a {
 }
 
 .hero-description {
-    /* aumentei levemente a largura maxima para o texto fluir melhor em tablets tb */
+    /* aumentei levemente a largura maxima para o texto fluir melhor em tablets */
     max-width: 650px;
     margin: 0 auto;
     
@@ -361,7 +330,7 @@ header a {
     color: #d1d5db;
     opacity: 1; /* removi opacidade para melhorar legibilidade em telas com brilho baixo */
     
-    line-height: 1.6; /* entrelinha maior para elegância */
+    line-height: 1.6; /* entrelinha maior para ELEGÂNCIA!!! */
     text-align: center;
     display: block;
 }
@@ -383,7 +352,6 @@ header a {
 }
 
 .hero-btns {
-    /* removi margin-top pois o gap do container pai ja cuida disso */
     margin-top: 0.5rem; 
     
     /* remove a margem fixa gigante de baixo */
@@ -398,7 +366,7 @@ header a {
 
 .btn {
     font-family: 'Inter', sans-serif;
-    font-size: 0.95rem; /* ajuste fino */
+    font-size: 0.95rem; /* ajuste fino, só pra ter certeza */
     font-weight: 600; 
     background-color: transparent;
     box-shadow: none;
@@ -406,11 +374,10 @@ header a {
     border-radius: 0.5rem;
     text-decoration: none; 
     
-    /* Ajuste Medina: No mobile, botões full width ou quase isso ficam melhores */
     width: 100%; 
     max-width: 300px;
     height: auto;
-    padding: 0.9rem 0; /* Mais fácil de clicar no touch */
+    padding: 0.9rem 0; /* mais fácil de clicar no touch */
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -452,27 +419,27 @@ header a {
 .scroll-arrow {
     /* removi margem fixa para usar a do container */
     margin-top: 0;
-    color: var(--text-fade); /* Começa sutil */
+    color: var(--text-fade); /* começa sutil */
     font-size: 2rem;
 
-    /* A mágica da animação */
+    /* magica da animação !!!! */
     animation: float-arrow 2s infinite ease-in-out;
 
-    /* Garantir que não seja selecionável como texto */
+    /* garantindo que ela nao seja selecionavel */
     user-select: none;
     cursor: default;
 }
 
-/* Animação de flutuação */
+/* animação da setinha -> cima, baixo, etc */
 @keyframes float-arrow {
     0% {
         transform: translateY(0);
         opacity: 0.5;
     }
     50% {
-        transform: translateY(10px); /* Move 10px para baixo */
-        opacity: 1; /* Fica totalmente visível */
-        color: var(--accent-solid); /* Brilha roxo no pico */
+        transform: translateY(10px); /* move 10px para baixo */
+        opacity: 1; /* fica totalmente visível */
+        color: var(--accent-solid); /* nrilha roxo no pico */
     }
     100% {
         transform: translateY(0);
@@ -480,9 +447,150 @@ header a {
     }
 }
 
-/* Animacao de skeleton enquanto esperamos a API */
+/* --- SECTION - SOBRE MIM --- */
 
+.about-me-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.about-me-container {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.about-me-title {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.info-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem; 
+}
+
+/* garantindo que os filhos tambem respeitem a width do container*/
+.about-me-text-card,
+.code-profile-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+.about-me-text-card {
+    width: 90%;
+}
+
+.my-info-text {
+    /* justificado as vezes cria buracos em mobile enqnt left é mais seguro pra leitura  */
+    text-align: left; 
+    margin-bottom: 0.8rem;
+    line-height: 1.7; /* leitura melhor, preciso aderir mais */
+}
+
+.highlight {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+/* esse é o card de código da secao sobre mim */
+.code-profile-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem; /* m pouco menor para caber melhor no mobile */
+    line-height: 1.6;
+
+    max-width: 520px; /* limite máximo visual */
+    width: 100%;
+    
+    overflow-x: auto; 
+}
+
+.code-profile-card::-webkit-scrollbar {
+    height: 4px;
+}
+.code-profile-card::-webkit-scrollbar-thumb {
+    background-color: var(--border-glass);
+    border-radius: 4px;
+}
+
+.code-profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.code-line {
+    display: block;
+    white-space: nowrap; 
+    color: #e5e7eb;
+    min-height: 1.4em; /* mantem altura mesmo se linha vazia */
+}
+
+/* classes auxiliares pra ajudar a "identar" o cod do card */
+.indent-1 { 
+    padding-left: 1rem; 
+}
+.indent-2 { 
+    padding-left: 2rem; 
+}
+.indent-3 {
+    padding-left: 3rem; 
+}
+
+.comment {
+    color: #9ca3af;
+    font-style: italic;
+    margin-bottom: 0.2rem;
+}
+
+.keyword { 
+    color: #c084fc; 
+} 
+
+.type { 
+    color: #93c5fd; 
+}    
+
+.string { 
+    color: #86efac; 
+}  
+
+.this { 
+    color: #fca5a5; 
+}   
+
+.method { 
+    color: #fcd34d; 
+}  
+
+.number { 
+    color: #f9a8d4; 
+}  
+
+
+/* --- CARDS DE PROJETOS E SKELETON --- */
+
+/* Animacao de skeleton enquanto esperamos a API */
 /* wrapper do skeleton (limita largura da página) */
+
 .skeleton-card-wrapper {
     width: 100%;
     max-width: 1200px;
@@ -569,7 +677,6 @@ header a {
     height: 160px;
     margin-bottom: 1rem;
     flex-grow: 1; /* ela precisa poder crescer*/
-
 }
 
 /* data */
@@ -592,7 +699,7 @@ header a {
     height: 20px;
 }
 
-/* animacao de loading do skeleton */
+/* animacao de loading do skeleton, tá muito fofinha ;p */
 @keyframes skeleton-loading {
     0% {
         background-position: 100% 0;
@@ -602,6 +709,124 @@ header a {
     }
 }
 
+/* CONHECIMENTO E STACKS!!!!!!!! */
+
+.skills-wrapper {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    margin-bottom: 4rem;
+}
+
+.skills-title {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* GRID PRINCIPAL - e lá vamos nós */
+.skills-grid {
+    display: grid;
+    /* 1 coluna pra mobile first */
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+    align-items: start; /* alinha ao topo permitindo alturas q parecam mais naturais */
+}
+
+/* --- O CARD LIMPO --- */
+.tech-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 1rem;
+    padding: 2rem;
+    
+    /* layout flex vertical */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    /* altura 100% para ficarem iguais no grid se usar align-items: stretch */
+    height: 100%;
+    
+    /* transicoes e cotnrole */
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.tech-card:hover::after {
+    opacity: 1;
+}
+
+/* CABEÇALHO DO CARD */
+.tech-header {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-glass);
+    margin-bottom: 0.5rem;
+}
+
+.tech-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* CORPO DO CARD */
+.tech-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* subtitulos de tecnologia - tipo java e blablabla */
+.tech-subtitle {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--accent-solid); /* destaque sutil na cor roxa */
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.tech-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.tech-item {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #d1d5db;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    line-height: 1.5;
+}
+
+/* bullet point personalizado, so serve pra isso mesmo! */
+.tech-item::before {
+    content: '›';
+    color: var(--accent-solid);
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1;
+}
 
 
 
@@ -617,6 +842,15 @@ header a {
 
 
 /* cards de projetos reais pos fetch*/
+
+.project-section-title {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 0;
+    text-align: center;
+}
+
 
 .project-card-wrapper {
     width: 100%;
@@ -669,7 +903,7 @@ header a {
 
 .folder-icon {
     color: var(--accent-solid);
-    font-size: 1.75rem; /* ajustado para ~28px para equilibrar com o github (parece menor) */
+    font-size: 1.75rem; /* ajustado para 28px +/- para equilibrar com o github (parece menor) */
     line-height: 1;
 }
 
@@ -794,18 +1028,243 @@ header a {
 }
 
 
+/* --- MEDIA QUERIES --- */
 
-/* Media queries */
+
+/*  Media query específica para o iPhone SE (parametro d celular super pequeno)) */
+@media (max-width: 380px) {
+    .hero-title {
+        font-size: 2rem; /* Força um titulo menor */
+    }
+    .about-me-wrapper {
+        padding: 1rem; /* Ganha espaço nas laterais */
+    }
+    .code-profile-card {
+        padding: 1rem; /* Menos padding interno no card */
+        font-size: 0.75rem; /* Fonte menor pro código não estourar */
+    }
+    .indent-1 { padding-left: 0.8rem; }
+    .indent-2 { padding-left: 1.6rem; }
+    .indent-3 { padding-left: 2.4rem; }
+    
+    .hero-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* SECAO DE CONTATO */
+
+.contact-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.contact-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 1rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    
+    /* sutil glow roxo no fundo */
+    background-image: radial-gradient(circle at top right, rgba(139, 92, 246, 0.05), transparent 40%);
+    
+    /* isso aq garante que o conteúdo fique acima do glow animado */
+    overflow: hidden;
+    isolation: isolate; 
+    
+    /* um jeito de transicionar a borda e a box shadow dentroransição suave para a borda */
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* esse é o glow animado */
+.contact-container::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    
+    background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.20), transparent 60%);
+    
+    opacity: 0; /* começa invisivel */
+    transition: opacity 0.5s ease; /* mas animamos a opaciodade pra parecer mais sutil */
+    z-index: 1; /* fica acima do background mas abaixo do texto  */
+    pointer-events: none;
+}
+
+/* texto e botão  ACIMA do glow */
+.contact-container > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* estados de Hover */
+.contact-container:hover {
+    border-color: rgba(139, 92, 246, 0.4); /* efeito na borda */
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.1); /* brilho externo sutil */
+}
+
+.contact-container:hover::before {
+    opacity: 1; /* revela o gradiente forte suavemente */
+}
+
+.contact-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.contact-text {
+    color: var(--text-fade);
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+    line-height: 1.6;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: var(--accent-solid);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.3);
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+}
+
+.contact-btn i {
+    font-size: 1.25rem;
+}
+
+
+
+/* FOOTER */
+
+.footer-wrapper {
+    width: 100%;
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-glass);
+    padding: 2.5rem 0;
+    margin-top: 4rem;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* etilinho a mais para os links com icones */
+.footer-social-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.footer-icon-link {
+    color: var(--text-fade);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* garante que não tenha sublinhado lá tb */
+}
+
+.footer-icon-link i {
+    font-size: 1.5rem; /* +/- 24px */
+}
+
+.footer-icon-link:hover {
+    color: var(--accent-solid);
+    transform: translateY(-3px);
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+}
+
+.footer-copy {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(156, 163, 175, 0.6); 
+}
+
 
 /* Tablets */
 
 @media (min-width: 600px) {
+
+    .about-me-wrapper {
+        margin-bottom: 4rem;
+    }
+
+    .code-profile-card {
+        max-width: 100%; /* agora ocupa o espaço da coluna do grid/flex */
+        padding: 2rem;   /* mais ar interno */
+    }
+
+    .about-me-text-card {
+        width: 100%;
+        max-width: 100%; /* texto um pouco mais contido */
+        text-align: right;
+    }
+
+    .my-info-text {
+        text-align: right; /* muito mais estiloso no tablet!*/
+    }
+
+    .comment {
+        margin-top: 1rem; /* fica mais gostoso de enxergar*/
+        margin-bottom: 2rem;
+    }
+
+    .code-profile-card {
+        margin-top: 0;
+    }
+
+    .info-container {
+        /* o Grid garante alturas iguais automaticamente para os filhos diretos */
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* duas colunas iguais */
+        gap: 2rem;
+    }
+    
+    /* se a tela for tablet pequeno, talvez grid fique apertado, mas com 600px já dá!! */
+    
     .project-card-container {
         grid-template-columns: repeat(2, 1fr);
     }
 
     .skeleton-card-container {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-container {
+        padding: 4rem;
+    }
+
+    .footer-container {
+        flex-direction: row-reverse; /* icones na direita e texto na esquerda */
+        justify-content: space-between;
     }
 }
 
@@ -884,6 +1343,7 @@ header a {
         box-shadow: none; 
     }
 
+    /* hero section */
     .main-tag {
         /* margin-top zero aqui tb, controlado pelo layout flex pai */
         margin-top: 0;
@@ -900,6 +1360,37 @@ header a {
         gap: 1rem; 
         width: 100%; /* Garante centralização */
     }
+
+
+    /* about me*/
+
+    .about-me-wrapper {
+        margin-bottom: 4rem;
+    }
+
+    .code-profile-card {
+        margin-top: 0;
+    }
+    
+    /* mantendo o Grid do tablet mas com espaçamento maior */
+    .info-container {
+        gap: 4rem;
+    }
+
+
+    /* skills */
+        .skills-grid {
+            /*  3 colunas iguais */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 2rem;
+            align-items: stretch; /*  para terem a mesma altura */
+        }
+
+        .skills-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
 
 
     .project-card-container {

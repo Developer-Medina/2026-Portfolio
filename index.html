@@ -5,7 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Medina - Portfolio</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
     <!-- Header + menu -->
@@ -15,7 +35,7 @@
             <div class="nav-bar">
                 <!-- a barra do menu-->
 
-                <a href="https://github.com/Developer-Medina" class="nav-logo">&infin;</a>
+                <a href="https://github.com/Developer-Medina" target="_/blank" class="nav-logo">&infin;</a>
 
                 <button class="menu-button" onclick="openMenu()">
                     <span class="line line-top"></span>
@@ -30,11 +50,11 @@
                 <div class="nav-content-padding">
                     <!-- o menu suspenso em si -->
                     <ul class="nav-list">
-                        <li class="menu-item"><a href="#">Início</a></li>
-                        <li class="menu-item"><a href="#">Sobre mim</a></li>
-                        <li class="menu-item"><a href="#">Habilidades</a></li>
+                        <li class="menu-item"><a href="#hero-section">Início</a></li>
+                        <li class="menu-item"><a href="#boutme">Sobre mim</a></li>
+                        <li class="menu-item"><a href="#skill-section">Habilidades</a></li>
                         <li class="menu-item"><a href="#projects">Projetos</a></li>
-                        <li class="menu-item"><a href="#">Contato</a></li>
+                        <li class="menu-item"><a href="#contact">Contato</a></li>
                     </ul>
                 </div>
             </div>
@@ -44,7 +64,7 @@
 
     <!-- Hero section -->
     <!-- wrapper == container maior -- max-wdith de 1200px -->
-     <div class="hero-wrapper">
+     <section class="hero-wrapper" id="hero-section">
         <div class="glow-blob"></div>
             <div class="hero-container">
                 
@@ -61,12 +81,12 @@
 
                 <!-- melhorei o copy para dar mais autoridade e volume visual na hero -->
                 <p class="hero-description">
-                    Olá, sou <strong>Julio Medina</strong>. Transformo linhas de código em soluções digitais completas. Foco em criar experiências fluidas e arquiteturas escaláveis, conectando design e performance.
+                    Olá, <strong>me chamo Medina</strong>! Transformo linhas de código em soluções digitais completas. Foco em criar experiências fluidas e arquiteturas escaláveis, conectando design e performance.
                 </p>
 
                 <div class="hero-btns">
                     <a href="#projects" class="btn btn-primary">Ver Projetos</a>
-                    <a href="#about" class="btn btn-outline">Sobre mim</a>
+                    <a href="./Julio_Medina_CV.pdf" download="Julio_Medina_CV.pdf" class="btn btn-outline">Baixar CV</a>
                 </div>
                 <!-- adicionei um container para a seta para controlar melhor o espaçamento em telas minusculas -->
                 <div class="scroll-arrow-container">
@@ -74,25 +94,204 @@
                 </div>
             </div>
         </div>
-     </div>
+     </section>
 
+     <section class="about-me-wrapper" id="boutme">
+        <div class="about-me-container">
+            <h3 class="about-me-title">Sobre mim</h3>
+            <div class="info-container">
+                <div class="about-me-text-card">
+                    <p class="my-info-text">
+                    Meu interesse vai além do código: penso em estrutura, fluxo, responsabilidades e impacto real da solução. Programar, pra mim, é transformar complexidade em algo claro, previsível e sustentável.
+                    </p>
 
+                    <p class="my-info-text">
+                    Atuo como desenvolvedor Full Stack em formação, com foco em backend Java e Spring Boot. No frontend, trabalho com JavaScript, HTML, CSS e React, sempre buscando integração real entre interface, lógica e dados.
+                    </p>
 
-    <!-- Cards de Projetos -->
-    <!-- wrapper com skeletons -->
-    <div class="skeleton-card-wrapper dom-visible">
-        <div class="skeleton-card-container">
+                    <p class="my-info-text">
+                    Minha experiência inclui projetos independentes e comunitários em produção, além de vivência profissional em ambientes técnicos, corporativos e internacionais. Valorizo soluções que funcionem bem hoje - e continuem funcionando amanhã.
+                    </p>
+
+                </div>
+                <div class="code-profile-card">
+                    <div class="code-line comment">// MeuPerfil.java</div>
+                    <div class="code-line">
+                        <span class="keyword">class</span>
+                        <span class="type">Desenvolvedor</span>
+                        <span>{</span>
+                    </div>
+                    <div class="code-line indent-1">
+                        <span class="type">String</span> nome =
+                        <span class="string">"Julio Medina"</span>;
+                    </div>
+                    <div class="code-line indent-1">
+                        <span class="type">String</span> cargo =
+                        <span class="string">"Dev Fullstack"</span>;
+                    </div>
+                    <div class="code-line indent-1">
+                        <span class="keyword">void</span> codar()
+                        <span>{</span>
+                    </div>
+                    <div class="code-line indent-2">
+                        <span class="this">this</span>.estudar(
+                        <span class="string">"Diariamente"</span>);
+                    </div>
+                    <div class="code-line indent-2">
+                        <span class="this">this</span>.construir(
+                        <span class="string">"APIs Limpas"</span>);
+                    </div>
+                    <div class="code-line indent-1">}</div>
+                    <div class="code-line">}</div>
+                </div>
+            </div>
+        </div>
+     </section>
+
+     <section class="skills-wrapper" id="skill-section">        
+        <h2 class="skills-title">Conhecimento Técnico</h2>
+        <div class="skills-grid">
+
+            <!-- BACKEND -->
+            <div class="tech-card">
+                <div class="tech-header">
+                    <span class="tech-title">☕ Backend</span>
+                </div>
+                
+                <div class="tech-body">
+                    <div>
+                        <h4 class="tech-subtitle">Java Core</h4>
+                        <ul class="tech-list">
+                            <li class="tech-item">Java 17+ & POO</li>
+                            <li class="tech-item">Coleções e Generics</li>
+                            <li class="tech-item">Tratamento de Exceções</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="tech-subtitle">Spring Ecosystem</h4>
+                        <ul class="tech-list">
+                            <li class="tech-item">API RESTful</li>
+                            <li class="tech-item">Design Patterns (DTO/DAO)</li>
+                            <li class="tech-item">Global Error Handling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FRONTEND -->
+            <div class="tech-card">
+                <div class="tech-header">
+                    <span class="tech-title">🎨 Frontend</span>
+                </div>
+                
+                <div class="tech-body">
+                    <div>
+                        <h4 class="tech-subtitle">Fundamentos</h4>
+                        <ul class="tech-list">
+                            <li class="tech-item">JavaScript (ES6+)</li>
+                            <li class="tech-item">HTML5 Semântico</li>
+                            <li class="tech-item">CSS3 Moderno</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="tech-subtitle">React.js</h4>
+                        <ul class="tech-list">
+                            <li class="tech-item">Componentização</li>
+                            <li class="tech-item">Hooks & State Management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DADOS & INFRA -->
+            <div class="tech-card">
+                <div class="tech-header">
+                    <span class="tech-title">💾 Dados & Infra</span>
+                </div>
+                
+                <div class="tech-body">
+                    <div>
+                        <h4 class="tech-subtitle">Banco de Dados</h4>
+                        <ul class="tech-list">
+                            <li class="tech-item">PostgreSQL</li>
+                            <li class="tech-item">Consultas SQL</li>
+                            <li class="tech-item">Modelagem Relacional</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="tech-subtitle">DevOps & Tools</h4>
+                        <ul class="tech-list">
+                            <li class="tech-item">Git & GitHub</li>
+                            <li class="tech-item">Maven / Gradle</li>
+                            <li class="tech-item">Deploy em Cloud (Heroku)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
         </div>
-    </div>
+    </section>
 
-    <!-- wrapper principal -->
-    <div class="project-card-wrapper dom-no-visible" id="projects">
-        <div class="project-card-container">
-            <!-- os cards serao injetados aqui pelo js -->
+
+    <section>
+        <h3 class="project-section-title">Meus projetos</h3>
+        <!-- cards de Projetos -->
+        <!-- wrapper com skeletons -->
+        <div class="skeleton-card-wrapper dom-visible">
+            <div class="skeleton-card-container">
+            </div>
         </div>
-    </div>
+        <!-- wrapper principal -->
+        <div class="project-card-wrapper dom-no-visible" id="projects">
+            <div class="project-card-container">
+                <!-- os cards serao injetados aqui pelo js -->
+            </div>
+        </div>
+    </section>
 
+    <section class="contact-wrapper" id="contact">
+        <div class="contact-container">
+            <h2 class="contact-title">Vamos conversar?</h2>
+            <p class="contact-text">
+                Estou sempre aberto a novas oportunidades e desafios. Se você tem uma pergunta, uma proposta ou apenas quer dar um oi, minha caixa de entrada está aberta!
+            </p>
+            <a href="mailto:email@exemplo.com" class="contact-btn">
+                <i class='bx bx-paper-plane'></i>
+                Mandar Mensagem
+            </a>
+        </div>
+    </section>
+
+
+    <footer class="footer-wrapper">
+        <div class="footer-container">
+            
+            <div class="footer-social-links">
+                <!-- linkedIn -->
+                <a href="https://linkedin.com" target="_blank" class="footer-icon-link" aria-label="LinkedIn">
+                    <i class='bx bxl-linkedin'></i>
+                </a>
+                
+                <!-- GitHub -->
+                <a href="https://github.com/Developer-Medina" target="_blank" class="footer-icon-link" aria-label="GitHub">
+                    <i class='bx bxl-github'></i>
+                </a>
+                
+                <!-- email -->
+                <a href="mailto:developer.medina@outlook.com" class="footer-icon-link" aria-label="Email">
+                    <i class='bx bx-envelope'></i>
+                </a>
+            </div>
+
+            <!-- copyright-->
+            <div class="footer-copy">
+                <p>&copy; 2024. Construído com <strong>Monster de manga</strong> e código puro.</p>
+            </div>
+        </div>
+    </footer>
 
 
     <script src="script.js"></script>
