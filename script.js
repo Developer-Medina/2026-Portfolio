@@ -299,3 +299,15 @@ function typingEffect() {
 }
 
 typingEffect();
+
+
+// Funcao para visualizacao de curriculo em celulares (nao da pra fazer download)
+
+const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const cvLink = document.getElementById('cv-link');
+
+if (isMobile) {
+    cvLink.removeAttribute('download');
+    cvLink.setAttribute('target', '_blank');
+    cvLink.textContent = 'Abrir CV (PDF)';
+}
