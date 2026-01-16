@@ -2,7 +2,7 @@
 
 > Portfólio pessoal desenvolvido com foco em **organização, responsividade e integração real entre frontend e backend**.
 
-🔗 **Deploy:** [https://medina-portfolio-six.vercel.app](https://developer-medina-portfolio.vercel.app/)
+🔗 **Deploy:** [https://developer-medina-portfolio.vercel.app](https://developer-medina-portfolio.vercel.app)
 
 ---
 
