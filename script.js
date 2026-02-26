@@ -209,6 +209,7 @@ async function genesis() {
     try {
         // buscando os dados da API
         let data = await fetchApi();
+        data.sort((a, b) => b.id - a.id)
 
         // estamos selecionando ambos wrappers do skeleton e dos cards de project
         const skeletonWrapper = document.querySelector('.skeleton-card-wrapper');
